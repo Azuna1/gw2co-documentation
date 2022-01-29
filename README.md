@@ -1,2 +1,2 @@
 # gw2co-documentation
-Please refere to the [My Awesome Wiki](../../wiki)
+Please refere to [My Awesome Wiki](../../wiki)
