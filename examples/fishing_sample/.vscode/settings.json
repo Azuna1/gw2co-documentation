@@ -1,0 +1,11 @@
+{
+    "Lua.diagnostics.globals": [
+        "Player",
+        "Detail",
+        "init",
+        "tick",
+        "draw",
+        "SetTickInterval",
+        "Info"
+    ]
+}
