@@ -1,3 +1,5 @@
+---@version >5.1|JIT
+
 ---An enumeration of date styles for Utility.getDate()
 ---@class DateStyle
 DateStyle = {
@@ -9,7 +11,6 @@ DateStyle = {
 
 ---Contains a library of commonly used scripting functions.
 ---@class Utility
----@version >5.1|JIT
 Utility = { }
 
 ---Gets the path on disk to where the current script resides.
