@@ -1,4 +1,4 @@
-require("lib.objectlocator.module")
+require("objectlocator.module")
 
 local ol = nil
 
