@@ -1,4 +1,5 @@
 require("lib.common.utility")
+require("lib.gw2co.gw2co")
 
 LOG_NONE  = 0   --- No logging.
 LOG_DEBUG = 1   --- Log everything including debug messages.
@@ -64,7 +65,7 @@ function Log.banner(header)
     }
 
     for lineIndex = 1, #(bannerLines) do
-        Info(bannerLines[lineIndex])
+        GW2CO.Info(bannerLines[lineIndex])
         Log.persist(bannerLines[lineIndex])
     end
 end
@@ -78,7 +79,7 @@ function Log.write(level, message)
     end
 
     local logEntry = Utility.getDate(DateStyle.CONSOLE) .. " - " .. Log.labels[level] .. " - " .. message
-    Info(logEntry)
+    GW2CO.Info(logEntry)
     Log.persist(logEntry)
 end
 

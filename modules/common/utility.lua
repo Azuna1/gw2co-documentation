@@ -72,3 +72,39 @@ end
 function Utility.tohex(number)
     return string.upper(string.format("%x", number))
 end
+
+---Converts a byte array to a string.
+---@param byteBuffer integer[]
+---@return string
+function Utility.bytesToString(byteBuffer)
+    local converted = { }
+    for _, byte in ipairs(byteBuffer) do
+        table.insert(converted, string.char(byte))
+    end
+    return table.concat(converted)
+end
+
+---Reads the specified number of bytes at the specified memory address and returns a string.
+---@param address integer
+---@param length integer
+---@return string
+function Utility.memoryToString(address, length)
+    local byteBuffer = { }
+    for offset = 0, length - 1, 1 do
+        byteBuffer[offset + 1] = Memory:ReadInt8(address + offset)
+    end
+
+    return Utility.bytesToString(byteBuffer)
+end
+
+---Dumps the contents of the specified table to the console. The results are displayed with nested properties included.
+---@param targetTable table
+function Utility.dumpTable(targetTable)
+    for key, value in pairs(targetTable) do
+        if type(value) == "table" then 
+            Utility.dumpTable(value)
+        else 
+            Info(key, value)
+        end
+    end
+end
