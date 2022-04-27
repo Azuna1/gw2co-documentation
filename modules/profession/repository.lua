@@ -1,4 +1,4 @@
----@version >5.1|JIT
+---@version >5.3|JIT
 require("lib.profession.enums")
 require("lib.profession.skilldata")
 require("lib.logging.log")

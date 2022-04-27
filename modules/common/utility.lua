@@ -1,4 +1,4 @@
----@version >5.1|JIT
+---@version >5.3|JIT
 
 ---An enumeration of date styles for Utility.getDate()
 ---@class DateStyle

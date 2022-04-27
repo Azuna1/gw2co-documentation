@@ -1,4 +1,4 @@
----@version >5.1|JIT
+---@version >5.3|JIT
 ---@class GuardianSkills
 ---@field skills table<number, SkillData>
 GuardianSkills = {

@@ -1,4 +1,4 @@
----@version >5.1|JIT
+---@version >5.3|JIT
 ---@class RevenantSkills
 ---@field skills table<number, SkillData>
 RevenantSkills = {

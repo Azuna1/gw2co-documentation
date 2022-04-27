@@ -1,4 +1,4 @@
----@version >5.1|JIT
+---@version >5.3|JIT
 ---@class RangerSkills
 ---@field skills table<number, SkillData>
 RangerSkills = {
@@ -1160,6 +1160,7 @@ RangerSkills = {
         },
         [43375] = {
             id              = 43375,
+            eliteSpecId     = 55,
             name            = "Prelude Lash",
             description     = "Beast. Pull foes toward you and bind them briefly.",
             slot            = ENUM_PROFESSION_SKILLBAR_SLOT.PROFESSION_3,

@@ -9,7 +9,7 @@ LOG_ERROR = 4   --- Only log errors.
 
 ---Implements a static global context logging interface that can write to either the console or console and log file.
 ---@class Log
----@version >5.1|JIT
+---@version >5.3|JIT
 Log = {
     labels = {
         [0] = "[NONE] ",

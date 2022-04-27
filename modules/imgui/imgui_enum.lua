@@ -1,4 +1,4 @@
----@version >5.1|JIT
+---@version >5.3|JIT
 ---Implements constants and enumerations for ImGui version 1.80
 ---@class ImGuiEnum
 ImGuiEnum                                        = {}
