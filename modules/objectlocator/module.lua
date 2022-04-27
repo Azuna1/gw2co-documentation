@@ -1,8 +1,8 @@
 ---@version >5.3|JIT
 
-require("lib.logging.log")
-require("lib.imgui.imgui_enum")
-require("lib.objectlocator.ui")
+require("logging.log")
+require("imgui.imgui_enum")
+require("objectlocator.ui")
 
 ---@class ObjectLocator
 ---@field version string

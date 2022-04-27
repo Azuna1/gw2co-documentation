@@ -8,7 +8,7 @@ local function try (tryBlock)
 	local status, err = true, nil
 
 	if (type(tryBlock) == CONST_FUNCTION_TYPE_NAME) then
-		status, err = xpcall(tryBlock, debug.traceback)
+		status, err = pcall(tryBlock, debug.traceback)
 	end
 
 	---Implements the finally chain of the try-catch-finally chain.

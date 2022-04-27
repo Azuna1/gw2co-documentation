@@ -1,5 +1,5 @@
 ---@version >5.3|JIT
-require("lib.profession.enums")
+require("profession.enums")
 
 ---@class SkillData
 ---@field id                number                                 "The skill's ID."

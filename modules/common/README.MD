@@ -12,7 +12,7 @@ Any errors are passed directly as a single variable to the catch block.
 
 Usage example:
 ```lua
-local try = require("lib.common.trycatch")
+local try = require("common.trycatch")
 
 try(function()
     local vairable = nonexistent + 1

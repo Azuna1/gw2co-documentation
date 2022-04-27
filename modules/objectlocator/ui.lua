@@ -1,4 +1,4 @@
-require("lib.common.state")
+require("common.state")
 
 ---@class UI_STATE_KEY
 UI_STATE_KEY = {

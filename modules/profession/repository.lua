@@ -1,19 +1,32 @@
 ---@version >5.3|JIT
-require("lib.profession.enums")
-require("lib.profession.skilldata")
-require("lib.logging.log")
+require("profession.enums")
+require("profession.skilldata")
+require("logging.log")
 
-local ProfessionIndex = {
+local PROFESSION_SKILL_INDEX = {
     [ENUM_PROFESSION_NAME.NONE]         = { },
-    [ENUM_PROFESSION_NAME.GUARDIAN]     = require("lib.profession.skills.guardianskills"),
-    [ENUM_PROFESSION_NAME.WARRIOR]      = require("lib.profession.skills.warriorskills"),
-    [ENUM_PROFESSION_NAME.ENGINEER]     = require("lib.profession.skills.engineerskills"),
-    [ENUM_PROFESSION_NAME.RANGER]       = require("lib.profession.skills.rangerskills"),
-    [ENUM_PROFESSION_NAME.THIEF]        = require("lib.profession.skills.thiefskills"),
-    [ENUM_PROFESSION_NAME.ELEMENTALIST] = require("lib.profession.skills.elementalistskills"),
-    [ENUM_PROFESSION_NAME.MESMER]       = require("lib.profession.skills.mesmerskills"),
-    [ENUM_PROFESSION_NAME.NECROMANCER]  = require("lib.profession.skills.necromancerskills"),
-    [ENUM_PROFESSION_NAME.REVENANT]     = require("lib.profession.skills.revenantskills")
+    [ENUM_PROFESSION_NAME.GUARDIAN]     = require("profession.skills.guardianskills"),
+    [ENUM_PROFESSION_NAME.WARRIOR]      = require("profession.skills.warriorskills"),
+    [ENUM_PROFESSION_NAME.ENGINEER]     = require("profession.skills.engineerskills"),
+    [ENUM_PROFESSION_NAME.RANGER]       = require("profession.skills.rangerskills"),
+    [ENUM_PROFESSION_NAME.THIEF]        = require("profession.skills.thiefskills"),
+    [ENUM_PROFESSION_NAME.ELEMENTALIST] = require("profession.skills.elementalistskills"),
+    [ENUM_PROFESSION_NAME.MESMER]       = require("profession.skills.mesmerskills"),
+    [ENUM_PROFESSION_NAME.NECROMANCER]  = require("profession.skills.necromancerskills"),
+    [ENUM_PROFESSION_NAME.REVENANT]     = require("profession.skills.revenantskills")
+}
+
+local PROFESSION_INDEX_MAP = {
+    [PROFESSION.PROFESSION_NONE]         = ENUM_PROFESSION_NAME.NONE,
+    [PROFESSION.PROFESSION_GUARDIAN]     = ENUM_PROFESSION_NAME.GUARDIAN,
+    [PROFESSION.PROFESSION_WARRIOR]      = ENUM_PROFESSION_NAME.WARRIOR,
+    [PROFESSION.PROFESSION_ENGINEER]     = ENUM_PROFESSION_NAME.ENGINEER,
+    [PROFESSION.PROFESSION_RANGER]       = ENUM_PROFESSION_NAME.RANGER,
+    [PROFESSION.PROFESSION_THIEF]        = ENUM_PROFESSION_NAME.THIEF,
+    [PROFESSION.PROFESSION_ELEMENTALIST] = ENUM_PROFESSION_NAME.ELEMENTALIST,
+    [PROFESSION.PROFESSION_MESMER]       = ENUM_PROFESSION_NAME.MESMER,
+    [PROFESSION.PROFESSION_NECROMANCER]  = ENUM_PROFESSION_NAME.NECROMANCER,
+    [PROFESSION.PROFESSION_REVENANT]     = ENUM_PROFESSION_NAME.REVENANT
 }
 
 ---Implements a repository class for professions containing profession specific information such as skill data.
@@ -21,23 +34,24 @@ local ProfessionIndex = {
 ProfessionRepository = { }
 
 ---Returns skill information for the specified profession and skillId.
----@param professionName ENUM_PROFESSION_NAME
+---@param profession number "A GW2CO PROFESSION enum value corresponding to a profession."
 ---@param skillId number
----@returns SkillData
-function ProfessionRepository.GetSKillData(professionName, skillId)
-    local professionSkillData = ProfessionIndex[professionName]
+---@return SkillData
+function ProfessionRepository.getSKillData(profession, skillId)
+    local professionName = PROFESSION_INDEX_MAP[profession]
+    local professionSkillData = PROFESSION_SKILL_INDEX[professionName]
     if (professionSkillData == nil) then
-        Log.warn("ProfessionRepository.GetSKillData() Attempt to retrieve skill information for profession " .. professionName .. " resulted in a nil value.")
+        Log.debug("ProfessionRepository.getSKillData() Attempt to retrieve skill information for profession " .. tostring(profession) .. " " .. professionName .. " resulted in a nil value.")
         return nil
     end
 
     local skillReference = professionSkillData.skills[skillId]
     if (skillReference == nil) then
-        Log.warn("ProfessionRepository.GetSKillData() Attempt to retrieve a skill with ID " .. tostring(skillId) .. " for profession " .. tostring(professionName) .. " resulted in a nil value.")
+        Log.debug("ProfessionRepository.getSKillData() Attempt to retrieve a skill with ID " .. tostring(skillId) .. " for profession " .. tostring(profession) .. " " .. professionName .. " resulted in a nil value.")
         return nil
     end
 
-    local skillData = SkillData:new(professionName, skillReference)
+    local skillData = SkillData:new(profession, skillReference)
     return skillData
 end
 

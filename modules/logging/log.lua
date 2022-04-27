@@ -1,5 +1,5 @@
-require("lib.common.utility")
-require("lib.gw2co.gw2co")
+require("common.utility")
+require("gw2co.gw2co")
 
 LOG_NONE  = 0   --- No logging.
 LOG_DEBUG = 1   --- Log everything including debug messages.

@@ -1,6 +1,6 @@
 ---@version >5.3|JIT
 
-require("lib.logging.log")
+require("logging.log")
 
 ---Provides local shared state management. Usefule to track the state of UI widgets accross classes.
 ---@class StateManager
@@ -27,11 +27,6 @@ end
 ---@param value any "A value to persist to state."
 function StateManager:set(key, value)
     local normalizedKey = string.upper(key)
-    if (value == nil and self.states[normalizedKey] ~= nil) then
-        table.remove(self.states, normalizedKey)
-        return
-    end
-
     local oldValue = self.states[normalizedKey]
     self.states[normalizedKey] = value
 
