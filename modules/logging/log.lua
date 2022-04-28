@@ -98,7 +98,7 @@ end
 ---Write a WARNING level log entry.
 ---@param message string
 function Log.warn(message)
-    Log.write(LOG_INFO, message)
+    Log.write(LOG_WARN, message)
 end
 
 ---Write a ERROR level log entry.

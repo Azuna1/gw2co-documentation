@@ -1,4 +1,5 @@
 ---@version >5.3|JIT
+require("common.string")
 
 ---An enumeration of date styles for Utility.getDate()
 ---@class DateStyle
@@ -108,3 +109,4 @@ function Utility.dumpTable(targetTable)
         end
     end
 end
+

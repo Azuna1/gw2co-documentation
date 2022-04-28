@@ -33,12 +33,60 @@ local PROFESSION_INDEX_MAP = {
 ---@class ProfessionRepository
 ProfessionRepository = { }
 
+---Checks if a profesion ID is valid. Use this before calling getSkillData() to avoid uneccessary log spam.
+---@param profession number
+---@return boolean|true
+function ProfessionRepository.isProfessionValid(profession)
+    return profession == PROFESSION.PROFESSION_GUARDIAN or
+    profession == PROFESSION.PROFESSION_WARRIOR or
+    profession == PROFESSION.PROFESSION_ENGINEER or
+    profession == PROFESSION.PROFESSION_RANGER or
+    profession == PROFESSION.PROFESSION_THIEF or
+    profession == PROFESSION.PROFESSION_ELEMENTALIST or
+    profession == PROFESSION.PROFESSION_MESMER or
+    profession == PROFESSION.PROFESSION_NECROMANCER or
+    profession == PROFESSION.PROFESSION_REVENANT
+end
+
+---Checks if a skill ID is valid. Use this before calling getSkillData() to avoid uneccessary log spam.
+---@param profession number
+---@param skillId number
+---@return boolean
+function ProfessionRepository.isSkillValid(profession, skillId)
+    if (not ProfessionRepository.isProfessionValid(profession)) then
+        return false
+    end
+
+    local professionName = PROFESSION_INDEX_MAP[profession]
+    if (professionName == nil) then
+        return false
+    end
+
+    local professionSkillData = PROFESSION_SKILL_INDEX[professionName]
+    if (professionSkillData == nil) then
+        Log.debug("ProfessionRepository.getSKillData() Attempt to retrieve skill information for profession " .. tostring(profession) .. " " .. professionName .. " resulted in a nil value.")
+        return false
+    end
+
+    local skillReference = professionSkillData.skills[skillId]
+    if (skillReference == nil) then
+        return false
+    end
+
+    return true
+end
+
 ---Returns skill information for the specified profession and skillId.
 ---@param profession number "A GW2CO PROFESSION enum value corresponding to a profession."
 ---@param skillId number
 ---@return SkillData
 function ProfessionRepository.getSKillData(profession, skillId)
     local professionName = PROFESSION_INDEX_MAP[profession]
+    if (professionName == nil) then
+        Log.warn("ProfessionRepository.getSKillData() Attempt to retrieve skill information for profession " .. tostring(profession) .. " resulted in a nil value.")
+        return nil
+    end
+
     local professionSkillData = PROFESSION_SKILL_INDEX[professionName]
     if (professionSkillData == nil) then
         Log.debug("ProfessionRepository.getSKillData() Attempt to retrieve skill information for profession " .. tostring(profession) .. " " .. professionName .. " resulted in a nil value.")
